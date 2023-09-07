@@ -62,16 +62,9 @@ public class InvoiceSystemApplication implements CommandLineRunner {
         // url
         var text = getText("https://axmjqhyyjpat.objectstorage.eu-amsterdam-1.oci.customer-oci.com/n/axmjqhyyjpat/b/externalbucket/o/data-1vdvx7Um7UzezAhpKyNmQ.xml");
         var objectMapper = new XmlMapper();
-        var s = objectMapper.readValue(text,students.class);
+        var students = objectMapper.readValue(text,students.class);
 
-        var url = "https://www.bankgirot.se/globalassets/dokument/exempelfiler/e-faktura/e-faktura_exempelfil_faktura_b2c.xml";
-        try {
-            var students = objectMapper.readValue(new URL(url), students.class);
-            System.out.println(students.student.get(0).name);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        System.out.println(students.student.get(0).name);
     }
 
     private void listAll(Scanner scan) {
