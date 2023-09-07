@@ -8,7 +8,7 @@ public class batch {
     public section section;
     public Object id;
     public String status;
-    public Date version;
+    public String version;
     public String text;
 }
 
