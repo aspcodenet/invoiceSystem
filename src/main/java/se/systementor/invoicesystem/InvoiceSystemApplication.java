@@ -1,9 +1,15 @@
 package se.systementor.invoicesystem;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import se.systementor.invoicesystem.models.bankgirot.batch;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -30,6 +36,16 @@ public class InvoiceSystemApplication implements CommandLineRunner {
     }
 
     private void fetch(Scanner scan) {
+        // url
+        var url = "https://www.bankgirot.se/globalassets/dokument/exempelfiler/e-faktura/e-faktura_exempelfil_faktura_b2c.xml";
+        var objectMapper = new XmlMapper();
+        try {
+            var batch = objectMapper.readValue(new URL(url), batch.class);
+            System.out.println(batch.batchDetails.bgnr);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void listAll(Scanner scan) {
